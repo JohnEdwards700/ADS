@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        FixedArrayList<Integer> scores = new FixedArrayList<Integer>();
+        FixedArrayList<Integer> scores = new FixedArrayList<>();
 
         Scanner scan = new Scanner(System.in);
 

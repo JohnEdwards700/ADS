@@ -1,7 +1,7 @@
 import java.util.Iterator;
 
 public class FixedArrayList<E> implements List<E>, Iterable<E> {
-    E arry[];
+    E[] arry;
     int len = 0;
    
 
