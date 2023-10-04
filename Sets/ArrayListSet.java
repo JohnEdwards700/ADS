@@ -4,6 +4,8 @@ public class ArrayListSet<E> implements Set<E> {
     ArrayList<E> list = new ArrayList<>();
     int len = 0;
 
+    Integer[] a = new Integer[25];
+
     public void add(E e) {
         if ( ! this.contains(e) ) {
             list.add(e);

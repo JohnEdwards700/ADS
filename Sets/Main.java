@@ -3,7 +3,24 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        String name = "Phillips";
+
+        int hashValue = 0;
+        for ( char c : name.toCharArray() ) {
+            System.out.println(c + " -> " + (int) c);
+
+            hashValue = (hashValue * 37 + (int) c) % 20000;
+
+            System.out.println(hashValue);
+        }
+
+        System.out.println(hashValue);
+
         Set<String> fruit = new ArrayListSet<>();
+
+        System.out.println(fruit);
+
+        System.exit(0);
 
         Scanner scan = new Scanner(System.in);
 
