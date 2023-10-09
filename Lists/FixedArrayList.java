@@ -1,6 +1,7 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class FixedArrayList<E> implements List<E>, Iterable<E> {
+public class FixedArrayList<E> implements List<E> {
     E[] arry;
     int len = 0;
    
@@ -46,25 +47,22 @@ public class FixedArrayList<E> implements List<E>, Iterable<E> {
         return len;
     }
 
-    public Iterator iterator() {
+    public Iterator<E> iterator() {
         return new FALIterator();
     }
     
-    class FALIterator implements Iterator {
+    class FALIterator implements Iterator<E> {
         int loc = 0;
     
         public E next() {
+            if ( loc >= len ) {
+                throw new NoSuchElementException();
+            }
             return arry[loc++];
         }
 
         public boolean hasNext() {
             return loc < len;
-        }
-    }
-
-    void append(FixedArrayList<E> other) {
-        if ( len + other.len > 10 ) {
-            
         }
     }
 }

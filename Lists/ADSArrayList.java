@@ -1,8 +1,8 @@
+@SuppressWarnings("unchecked")
 public class ADSArrayList<E> implements List<E> {
     E[] arry;
     int len = 0;
 
-    @SuppressWarnings("unchecked")
     public ADSArrayList() {
         arry = (E[]) new Object[10];
     }
