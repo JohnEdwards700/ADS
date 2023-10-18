@@ -20,6 +20,6 @@ public class IntegerPair implements Comparable<IntegerPair> {
             return -1;
         }
 
-        return 0;
+        return 0; 
     }
 }
