@@ -23,10 +23,10 @@ public class BinarySearchTreeSet implements Set<Integer> {
         }
 
         if ( t.e < e ) {
-            t.right = addRecursion(e, t.right);
+            t.r = addRecursion(e, t.r);
         }
         else if ( t.e > e ) {
-            t.left = addRecursion(e, t.left);
+            t.l = addRecursion(e, t.l);
         }
         
         return t;
@@ -37,7 +37,40 @@ public class BinarySearchTreeSet implements Set<Integer> {
     }
 
     public void remove(Integer e) {
+        root = removeRecursion(e, root);
+    }
+
+    private Tree removeRecursion(Integer e, Tree t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        if ( t.e == e ) {
+            if ( t.l == null && t.r == null ) {
+                return null;
+            }
+
+            // Found a non-leaf to delete
+            t.e = deleteMin(t.r);
+        }
         
+        if ( t.e > e ) {
+            t.l = removeRecursion(e, t.l);
+        }
+
+        if ( t.e < e ) {
+            t.r = removeRecursion(e, t.r);
+        }
+    }
+
+    private Integer deleteMin(Tree t) {
+        if ( t.l == null ) {
+            return t.e;
+        }
+        else {
+            t.l = ???
+            deleteMin(t.l);
+        }
     }
 
     public int length() {
