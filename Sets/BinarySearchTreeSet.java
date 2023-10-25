@@ -45,31 +45,42 @@ public class BinarySearchTreeSet implements Set<Integer> {
             return null;
         }
 
-        if ( t.e == e ) {
+        int comp = e.compareTo(t.e);
+
+        if ( comp == 0 ) {
             if ( t.l == null && t.r == null ) {
                 return null;
             }
 
             // Found a non-leaf to delete
-            t.e = deleteMin(t.r);
+            t.e = getMin(t.r);
+            t.r = deleteMin(t.r);
         }
-        
-        if ( t.e > e ) {
+        else if ( comp < 0 ) {
             t.l = removeRecursion(e, t.l);
         }
-
-        if ( t.e < e ) {
+        else if ( comp > 0 ) {
             t.r = removeRecursion(e, t.r);
         }
+
+        return t;
     }
 
-    private Integer deleteMin(Tree t) {
+    private Integer getMin(Tree t) {
         if ( t.l == null ) {
             return t.e;
         }
         else {
-            t.l = ???
-            deleteMin(t.l);
+            return getMin(t.l);
+        }
+    }
+
+    private Tree deleteMin(Tree t) {
+        if ( t.l == null ) {
+            return t.r;
+        }
+        else {
+            t.l = deleteMin(t.l);
         }
     }
 
