@@ -22,10 +22,12 @@ public class BinarySearchTreeSet implements Set<Integer> {
             return node;
         }
 
-        if ( t.e < e ) {
+        int comp = e.compareTo(t.e);
+
+        if ( comp > 0 ) {
             t.r = addRecursion(e, t.r);
         }
-        else if ( t.e > e ) {
+        else if ( comp < 0 ) {
             t.l = addRecursion(e, t.l);
         }
         
@@ -48,11 +50,15 @@ public class BinarySearchTreeSet implements Set<Integer> {
         int comp = e.compareTo(t.e);
 
         if ( comp == 0 ) {
-            if ( t.l == null && t.r == null ) {
-                return null;
+            if ( t.l == null ) {
+                return t.r;
             }
 
-            // Found a non-leaf to delete
+            if ( t.r == null ) {
+                return t.l;
+            }
+
+            // Found node to delete, with two children
             t.e = getMin(t.r);
             t.r = deleteMin(t.r);
         }
@@ -81,6 +87,7 @@ public class BinarySearchTreeSet implements Set<Integer> {
         }
         else {
             t.l = deleteMin(t.l);
+            return t;
         }
     }
 
