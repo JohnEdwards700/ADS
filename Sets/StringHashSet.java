@@ -10,7 +10,7 @@ public class StringHashSet implements Set<String> {
 
     public StringHashSet() {
         for ( int i = 0 ; i < 20000 ; i++ ) {
-            arry[i].next = null;
+            arry[i] = null;
         }
     }
 
@@ -29,8 +29,8 @@ public class StringHashSet implements Set<String> {
 
         Node n = new Node();
         n.s = e;
-        n.next = arry[hv].next;
-        arry[hv].next = n;
+        n.next = arry[hv];
+        arry[hv] = n;
 
         len = len + 1;
     }
@@ -38,7 +38,7 @@ public class StringHashSet implements Set<String> {
     public boolean contains(String e) {
         int hv = stringHash(e);
 
-        Node cur = arry[hv].next;
+        Node cur = arry[hv];
         while ( cur != null ) {
             if ( e.equals(cur.s) ) {
                 return true;

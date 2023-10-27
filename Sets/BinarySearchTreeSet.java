@@ -1,18 +1,18 @@
-public class BinarySearchTreeSet implements Set<Integer> {
+public class BinarySearchTreeSet<E extends Comparable<E>> implements Set<E> {
     
     class Tree {
-        Integer e;
+        E e;
         Tree l;
         Tree r;
     }
 
     Tree root = null;
 
-    public void add(Integer e) {
+    public void add(E e) {
         root = addRecursion(e, root);
     }
 
-    Tree addRecursion(Integer e, Tree t) {
+    Tree addRecursion(E e, Tree t) {
         if ( t == null ) {
             Tree node = new Tree();
             node.e = e;
@@ -34,15 +34,36 @@ public class BinarySearchTreeSet implements Set<Integer> {
         return t;
     }
 
-    public boolean contains(Integer e) {
-        return false;
+    public boolean contains(E e) {
+        return containsRecursion(e, root);
     }
 
-    public void remove(Integer e) {
+    private boolean containsRecursion(E e, Tree t) {
+
+        if ( t == null ) {
+            return false;
+        }
+
+        int cmp = e.compareTo(t.e);
+
+        if ( cmp == 0 ) {
+            return true;
+        }
+
+        else if ( cmp < 0 ) {
+            return containsRecursion(e, t.l);
+        }
+
+        else { // cmp > 0
+            return containsRecursion(e, t.r);
+        }
+    }
+
+    public void remove(E e) {
         root = removeRecursion(e, root);
     }
 
-    private Tree removeRecursion(Integer e, Tree t) {
+    private Tree removeRecursion(E e, Tree t) {
         if ( t == null ) {
             return null;
         }
@@ -72,7 +93,7 @@ public class BinarySearchTreeSet implements Set<Integer> {
         return t;
     }
 
-    private Integer getMin(Tree t) {
+    private E getMin(Tree t) {
         if ( t.l == null ) {
             return t.e;
         }

@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 public class Main {
 
     public static void main(String[] args) {
-        Set<String> words = new ArrayListSet<>();
+        Set<String> words = new BinarySearchTreeSet<>();
 
         Scanner scan = new Scanner(System.in);
 
