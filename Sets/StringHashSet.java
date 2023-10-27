@@ -49,7 +49,25 @@ public class StringHashSet implements Set<String> {
     }
     
     public void remove(String e) {
+        int hv = stringHash(e);
 
+        if ( arry[hv] != null && arry[hv].s.equals(e) ) {
+            arry[hv] = arry[hv].next;
+            len = len - 1;
+            return;
+        }
+
+        Node prev = arry[hv];
+        Node cur = arry[hv].next;
+        while ( cur != null ) {
+            if ( cur.s.equals(e) ) {
+                prev.next = cur.next;
+                len = len - 1;
+                return;
+            }
+            prev = cur;
+            cur = cur.next;  
+        }
     }
 
     public int length() {
