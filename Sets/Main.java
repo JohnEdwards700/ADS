@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 public class Main {
 
     public static void main(String[] args) {
-        Set<String> words = new BinarySearchTreeSet<>();
+        BinarySearchTreeSet<String> words = new BinarySearchTreeSet<>();
 
         Scanner scan = new Scanner(System.in);
 
@@ -61,6 +61,11 @@ public class Main {
                     break;
                 case "q":
                     done = true;
+                    break;
+                case "p":
+                    for ( String s : words ) {
+                        System.out.println(s);
+                    }
                     break;
                 default:
                     System.err.printf("Unknown command '%s'.\n", cmdstr);

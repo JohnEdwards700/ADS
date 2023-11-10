@@ -1,4 +1,7 @@
-public class BinarySearchTreeSet<E extends Comparable<E>> implements Set<E> {
+import java.util.Iterator;
+import java.util.Stack;
+
+public class BinarySearchTreeSet<E extends Comparable<E>> implements Set<E>, Iterable<E> {
     
     class Tree {
         E e;
@@ -114,5 +117,36 @@ public class BinarySearchTreeSet<E extends Comparable<E>> implements Set<E> {
 
     public int length() {
         return 0;
+    }
+
+    class prefixIteration implements Iterator<E> {
+
+        Stack<Tree> s = new Stack<>();
+
+        public prefixIteration() {
+            if ( root != null )
+                s.push(root);
+        }
+
+        public boolean hasNext() {
+            return ! s.empty();
+        }
+
+        public E next() {
+            Tree t = s.pop();
+
+            if ( t.r != null )
+                s.push(t.r);
+                
+            if ( t.l != null ) 
+                s.push(t.l);
+
+            return t.e;
+        }
+
+    }
+
+    public Iterator<E> iterator() {
+        return new prefixIteration();
     }
 }
