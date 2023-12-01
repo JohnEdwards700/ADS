@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileInputStream;
 
-public class Main {
+public class GraphMain {
     public static void main(String[] args) {
         Graph g = new Graph();
 
