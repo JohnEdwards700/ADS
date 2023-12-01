@@ -48,4 +48,27 @@ public class Graph {
 
         return fromSet.contains(to);
     }
+
+    private HashSet<Object> visited;
+
+    public boolean connected(Object n1, Object n2) {
+        visited = new HashSet<>();
+        return dfs(n1, n2);
+    }
+
+    private boolean dfs(Object n1, Object n2) {
+        visited.add(n1);
+
+        if ( n1 == n2 ) {
+            return true;
+        }
+
+        for (Object neighbor : graph.get(n1) ) {
+           if ( ! visited.contains(neighbor) && dfs(neighbor, n2) ) {
+            return true;
+           }
+        }
+
+        return false;
+    }
 }
