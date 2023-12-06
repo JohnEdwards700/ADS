@@ -1,4 +1,6 @@
-public class Trie implements Set<String> {
+import java.util.Iterator;
+
+public class Trie implements Set<String>, Iterable<String> {
 
     private class Tnode {
         String l;
@@ -9,21 +11,37 @@ public class Trie implements Set<String> {
 
     Tnode root = null;
 
-    void add(String e) {
+    public void add(String e) {
         return;
     }
 
-    boolean contains(String e) {
-        String fl = e.substring(0,1);
+    public boolean contains(String e) {
+        if ( e.length() == 0 ) {
+            return false;
+        }
 
-        Tnode cur = root;
+        return contains(e, root);
+    }
+
+    private boolean contains(String e, Tnode t) {
+        String fl = e.substring(0,1);
+        
+        Tnode cur = t;
 
         while ( cur != null && ! cur.l.equals(fl) ) {
             cur = cur.rsibling;
         }
 
-        
-        return false;
+        if ( cur == null ) {
+            return false;
+        }
+
+        if ( e.length() == 1 ) {
+            return cur.wordEnd;
+        }
+
+        String rs = e.substring(1);
+        return contains(rs, cur.lmchild);
     }
 
     void remove(String e) {
